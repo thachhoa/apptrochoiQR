@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
@@ -11,11 +11,26 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      // Dùng esbuild để transpile TypeScript (nhanh, không cần tsc)
+      // Type checking được tsc --noEmit xử lý riêng
+      target: 'es2022',
+      outDir: 'dist',
+      // Tránh lỗi chunk size warning
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          // Tách vendor chunks để tối ưu cache
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+            'vendor-lucide': ['lucide-react'],
+          },
+        },
+      },
+    },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
