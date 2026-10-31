@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Bộ skill giáo dục — không cần deploy lên Vercel
+SKILL EDUCATION/
