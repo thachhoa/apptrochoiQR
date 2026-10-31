@@ -1,0 +1,8 @@
+{
+  "name": "Golden Bell Smart Arena",
+  "description": "Interactive EdTech Gamification Platform for 'Rung Chuông Vàng' with Dual Play Modes (Touch UI & QR Scanner), Kawaii Pastel design, bilingual EN/VI support, and Excel import.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
