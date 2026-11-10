@@ -7,5 +7,9 @@ coverage/
 .env*
 !.env.example
 
+# Lockfile của Bun — Vercel nên dùng npm
+bun.lock
+bun.lockb
+
 # Bộ skill giáo dục — không cần deploy lên Vercel
 SKILL EDUCATION/
