@@ -16,8 +16,6 @@ export default defineConfig(() => {
       outDir: 'dist',
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
-        // Khai báo rõ entry point để Rollup không bị nhầm đường dẫn
-        input: path.resolve(__dirname, 'index.html'),
         output: {
           manualChunks: {
             'vendor-react': ['react', 'react-dom'],
