@@ -12,15 +12,13 @@ export default defineConfig(() => {
       },
     },
     build: {
-      // Dùng esbuild để transpile TypeScript (nhanh, không cần tsc)
-      // Type checking được tsc --noEmit xử lý riêng
       target: 'es2022',
       outDir: 'dist',
-      // Tránh lỗi chunk size warning
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
+        // Khai báo rõ entry point để Rollup không bị nhầm đường dẫn
+        input: path.resolve(__dirname, 'index.html'),
         output: {
-          // Tách vendor chunks để tối ưu cache
           manualChunks: {
             'vendor-react': ['react', 'react-dom'],
             'vendor-lucide': ['lucide-react'],
@@ -29,7 +27,6 @@ export default defineConfig(() => {
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
